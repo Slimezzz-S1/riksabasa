@@ -7,6 +7,7 @@
     "icon": "./assets/images/icon.png",
     "scheme": "riksabasa",
     "userInterfaceStyle": "automatic",
+    "githubUrl": "https://github.com/Slimezzz-S1/riksabasa",
     "ios": {
       "icon": "./assets/expo.icon"
     },
