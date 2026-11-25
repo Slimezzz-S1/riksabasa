@@ -1,5 +1,5 @@
 export type Category = "bahasa-indonesia" | "bahasa-sunda" | "sastra-sunda"
-export type Difficulty = "easy" | "medium" | "hard"
+export type Difficulty = "easy" | "intermediate" | "medium" | "hard" | "expert"
 
 export interface QuestionProps {
     question : string

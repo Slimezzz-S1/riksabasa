@@ -25,7 +25,31 @@ export default function DifficultyScreen() {
                 pathname: "/quiz",
                 params: {
                     category,
+                    difficulty: "intermediate"
+                }
+            },
+            imageUrl : require("@/assets/categories/bahasa-indonesia.jpeg")
+        },
+        {
+            title: "Medium",
+            description: "Medium",
+            url: {
+                pathname: "/quiz",
+                params: {
+                    category,
                     difficulty: "medium"
+                }
+            },
+            imageUrl : require("@/assets/categories/bahasa-indonesia.jpeg")
+        },
+        {
+            title: "Medium",
+            description: "Medium",
+            url: {
+                pathname: "/quiz",
+                params: {
+                    category,
+                    difficulty: "hard"
                 }
             },
             imageUrl : require("@/assets/categories/bahasa-indonesia.jpeg")
@@ -37,7 +61,7 @@ export default function DifficultyScreen() {
                 pathname: "/quiz",
                 params: {
                     category,
-                    difficulty: "hard"
+                    difficulty: "expert"
                 }
             },
             imageUrl : require("@/assets/categories/bahasa-indonesia.jpeg")
