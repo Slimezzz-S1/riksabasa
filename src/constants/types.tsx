@@ -1,4 +1,5 @@
 import { ImageSource } from "react-native"
+
 export const categories = ["bahasa-indonesia", "bahasa-sunda", "sastra-indonesia"] as const
 export const difficulties = ["easy", "intermediate", "medium", "hard", "expert"] as const
 
@@ -9,6 +10,13 @@ export type QuestionsData = {
 	[C in Category]: {
 		[D in Difficulty]: Quiz
 	}
+}
+
+export type QuizRow = {
+    category: Category;
+    difficulty: Difficulty;
+    material: string;
+    questions: string;
 }
 
 export interface Quiz {

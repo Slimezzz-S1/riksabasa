@@ -2,9 +2,10 @@ import { ThemedText } from "@/components/themed-text"
 import { ThemedView } from "@/components/themed-view"
 import { questionsData } from "@/constants/data"
 import { Colors } from "@/constants/theme"
-import type { Category, Difficulty, Question } from "@/constants/types"
+import type { Category, Difficulty, Question, Quiz } from "@/constants/types"
+import shuffle, { shuffleAnswers } from "@/lib/shuffle"
 import { Stack, useLocalSearchParams, useRouter } from "expo-router"
-import { useEffect, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 import { Pressable, ScrollView, StyleSheet, View, Text } from "react-native"
 
 export default function QuizScreen() {
@@ -14,7 +15,7 @@ export default function QuizScreen() {
 		difficulty: Difficulty
 	}>()
 
-	const questions : Question[] = questionsData[category]?.[difficulty]["questions"] ?? []
+	const [questions] = useState<Question[]>(() => (questionsData[category]?.[difficulty]?.questions ?? []).map(shuffleAnswers).filter((_, index) => index < 5))
 
 	const [index, setIndex] = useState(0)
 	const [picked, setPicked] = useState<(number | null)[]>(() => questions.map(() => null))
@@ -30,9 +31,10 @@ export default function QuizScreen() {
 		)
 	}
 
-	const current = questions[index];
-	const isLast = index === questions.length - 1;
-	const allAnswered = picked.every((p) => p !== null);
+	const current = questions[index]
+
+	const isLast = index === questions.length - 1
+	const allAnswered = picked.every((p) => p !== null)
 
 	const pick = (answerIndex: number) => setPicked((prev) => prev.map((p, i) => (i === index ? answerIndex : p)))
 
@@ -99,6 +101,7 @@ export default function QuizScreen() {
 
 				{current.answers.map((answer, i) => {
 					const selected = picked[index] === i
+
 					return (
 						<Pressable
 							key={i}

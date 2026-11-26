@@ -1,0 +1,56 @@
+import { Category, Difficulty, Question, Quiz, QuizRow } from '@/constants/types';
+import * as SQLite from 'expo-sqlite';
+
+const db = await SQLite.openDatabaseAsync("riksabasa-db.db")
+
+db.execSync(`
+CREATE TABLE IF NOT EXISTS quizzes (
+  category   TEXT NOT NULL CHECK (category IN ('bahasa-indonesia', 'bahasa-sunda', 'sastra-indonesia')),
+  difficulty TEXT NOT NULL CHECK (difficulty IN ('easy', 'intermediate', 'medium', 'hard', 'expert')),
+  material   TEXT NOT NULL DEFAULT '[]' CHECK (json_valid(material)),
+  questions  TEXT NOT NULL DEFAULT '[]' CHECK (json_valid(questions)),
+  PRIMARY KEY (category, difficulty)
+);`)
+
+function parseQuiz(row: QuizRow): Quiz {
+  return {
+	material: JSON.parse(row.material),
+	questions: JSON.parse(row.questions),
+  };
+}
+
+export async function getAllByCategory(category: Category): Promise<Partial<Record<Difficulty, Quiz>>> {
+	const rows = await db.getAllAsync<QuizRow>(
+		`SELECT * FROM quizzes WHERE category = ?`,
+		[category]
+  	)
+
+  	const result: Partial<Record<Difficulty, Quiz>> = {}
+  	for (const row of rows) {
+		result[row.difficulty] = parseQuiz(row)
+	}
+
+  	return result
+}
+
+export async function getAllByDifficulty(difficulty: Difficulty): Promise<Partial<Record<Category, Quiz>>> {
+  	const rows = await db.getAllAsync<QuizRow>(
+		`SELECT * FROM quizzes WHERE difficulty = ?`,
+		[difficulty]
+  	)
+
+  	const result: Partial<Record<Category, Quiz>> = {}
+	for (const row of rows) {
+		result[row.category] = parseQuiz(row);
+	}
+  	return result
+}
+
+export async function getQuiz(category: Category, difficulty: Difficulty): Promise<Quiz | null> {
+  	const row = await db.getFirstAsync<QuizRow>(
+		`SELECT * FROM quizzes WHERE category = ? AND difficulty = ?`,
+		[category, difficulty]
+  	)
+	
+  	return row ? parseQuiz(row) : null
+}

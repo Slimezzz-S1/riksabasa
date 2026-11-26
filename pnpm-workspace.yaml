@@ -2,3 +2,6 @@ allowBuilds:
   '@prisma/engines': true
   esbuild: true
   prisma: true
+permissions:
+  expo-sqlite:
+    skills: false

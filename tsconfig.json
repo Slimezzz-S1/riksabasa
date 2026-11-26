@@ -17,5 +17,5 @@
     "**/*.tsx",
     ".expo/types/**/*.ts",
     "expo-env.d.ts"
-, "src/app/index.tsx.tmp", "src/components/app-tabs.web.tsx.tmp"  ]
+, "src/app/index.tsx.tmp", "src/components/app-tabs.web.tsx.tmp", "src/lib/db.ts.tmp"  ]
 }
