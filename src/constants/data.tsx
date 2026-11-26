@@ -1,74 +1,86 @@
 import { ThemedText } from "@/components/themed-text"
 import { ThemedView } from "@/components/themed-view"
-import { CarouselItemProps } from "@/components/ui/hero-carousel"
 import { Image, StyleSheet, View } from "react-native"
 import { Colors } from "./theme"
+import { CarouselItemProps, HeroCarouselItem } from "@/components/ui/hero-carousel"
 
 const styles = StyleSheet.create({
-    mainElement : {
+    root : {
         position : "relative",
         width : 480,
+        height : 350,
         backgroundColor : Colors.light.accentColor,
         padding : 24,
+        paddingBottom : 0,
         borderRadius : 20,
         flexDirection : "row",
         justifyContent : "space-between",
         overflow : "hidden"
     },
-    mainElementTextWrapper : {
+    TextWrapper : {
         display : "flex",
         justifyContent : "center",
         width : "50%",
     },
-    mainElementImage : {
-        width : 200,
-        height : 300,
-    },
-    mainText : {
+    text : {
         color : "white",
         fontSize : 30,
+        lineHeight : 30 * 1.15
     },
-    background : {
-        position : "absolute",
-        top : "0",
-        left : "0",
-        width : "100%",
-        height : "100%",
-        objectFit : "cover",
-        borderWidth : 2
+    background: {
+        position: "absolute",
+        top: 0,
+        left : "-50%",
+        resizeMode: "contain",
+    },
+    imageWrapper: {
+        width: 200,
+        height: "100%",
+        overflow: "hidden",
+    },
+    image: {
+        position: "absolute",
+        top: 0,
+        left: 0,
+        width: "100%",
+        aspectRatio: 2 / 3,
     },
 })
 
-export const heroCarouselItems : CarouselItemProps[] = [
+export const indexItems : CarouselItemProps[] = [
     {
         id : "1",
         element : (
-            <ThemedView style={styles.mainElement}>
+            <ThemedView style={styles.root}>
                 <Image source={require("@/assets/index/hero-background.jpeg")} style={styles.background} />
 
-                <View style={styles.mainElementTextWrapper}>
-                    <ThemedText style={styles.mainText}>
+                <View style={styles.TextWrapper}>
+                    <ThemedText style={styles.text}>
                         {"Uji Kemampuan Bahasa,\nLestarikan Sastra dan Budaya"}
                     </ThemedText>
                 </View>
 
-                <Image source={require("@/assets/index/student.jpeg")} style={styles.mainElementImage} />
+                <View style={styles.imageWrapper}>
+                    <Image source={require("@/assets/index/student.png")} style={styles.image} />
+                </View>
             </ThemedView>
         )
     },
     {
         id : "2",
         element : (
-            <ThemedView style={styles.mainElement}>
+            <ThemedView style={styles.root}>
                 <Image source={require("@/assets/index/hero-background.jpeg")} style={styles.background} />
 
-                <View style={styles.mainElementTextWrapper}>
-                    <ThemedText style={styles.mainText}>
-                        {"Uji Kemampuan Bahasa,\nLestarikan Sastra dan Budaya"}
+                <View style={styles.TextWrapper}>
+                    <ThemedText style={styles.text}>
+                        {"Lorem ipsum dolor sit elit. Dolor consectetur."}
                     </ThemedText>
                 </View>
 
-                <Image source={require("@/assets/index/student.jpeg")} style={styles.mainElementImage} />
+                <View style={styles.imageWrapper}>
+                    <Image source={require("@/assets/index/student.png")} style={styles.image} />
+                </View>
             </ThemedView>
         )
     },

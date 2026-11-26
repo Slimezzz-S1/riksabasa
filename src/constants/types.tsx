@@ -1,16 +1,39 @@
+<<<<<<< HEAD
+import { ImageSource } from "react-native"
+=======
 export type Category = "bahasa-indonesia" | "bahasa-sunda" | "sastra-sunda"
-export type Difficulty = "easy" | "intermediate" | "medium" | "hard" | "expert"
+export type Difficulty = "easy" | "medium" | "hard"
+>>>>>>> parent of 77c4378 (menambahkan kesulitan baru)
 
-export interface QuestionProps {
-    question : string
-    answers : string[]
-    correctAnswer : number
+export type Category = "bahasa-indonesia" | "bahasa-sunda" | "sastra-indonesia"
+export type Difficulty = "easy" | "intermediate" | "medium" | "hard" | "expert"
+export type ContentType = "text" | "image"
+export type Content = Text | Image
+export type QuestionsData = {
+	[C in Category]: {
+		[D in Difficulty]: Quiz
+	}
 }
 
-export type ByDifficulty = {
-  [D in Difficulty]: QuestionProps[];
-};
+export interface Quiz {
+	material : Content[]
+	questions : Question[]
+}
 
-export type ByCategory = {
-  [C in Category]: ByDifficulty;
-};
+export interface Text {
+	type : "text"
+	text : string
+}
+
+export interface Image {
+	type : "image"
+	text : string
+	source : ImageSource
+}
+
+
+export interface Question {
+	question : string
+	answers : string[]
+	correctAnswer : number
+}

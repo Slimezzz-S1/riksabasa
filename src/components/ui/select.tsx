@@ -44,16 +44,14 @@ export function Option({ title, description, url, style, imageUrl, ...rest } : O
                     {title}
                 </ThemedText>
 
-                <View style={styles.optionInnerElement}>
-                    <ThemedText style={styles.optionDescription}>
-                        {description}
-                    </ThemedText>
-                </View>
+                <ThemedText>
+                    {description}
+                </ThemedText>
             </View>
 
             <Pressable style={styles.optionButton} onPress={() => router.navigate(url)}>
                 <ThemedText>
-                    Select
+                    Pilih
                 </ThemedText>
             </Pressable>
         </ThemedView>
@@ -72,14 +70,15 @@ const styles = StyleSheet.create({
     optionRoot : {
         flexDirection : "row",
         borderWidth : 2,
-        borderColor : "gray",
+        borderColor : Colors.dark.borderColor,
         borderRadius : 12,
         padding: 12,
         gap : 16
     },
     optionImage : {
         width : 75,
-        height : 75
+        height : 75,
+        borderRadius : 16
     },
     optionInnerElement : {
         flex : 1,
@@ -90,10 +89,9 @@ const styles = StyleSheet.create({
     },
     optionTitle : {
         fontSize : 26,
+        fontWeight : "bold"
     },
-    optionDescription : {
-        flex : 1
-    },
+    
     optionButton : {
         padding : 12,
         paddingInline : 24,
@@ -105,5 +103,8 @@ const styles = StyleSheet.create({
     },
     optionMainElement : {
         flex : 1,
+        display : "flex",
+        flexDirection : "column",
+        justifyContent : "center",
     },
 })
