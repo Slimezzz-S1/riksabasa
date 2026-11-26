@@ -26,7 +26,6 @@ export default function DifficultyScreen() {
                 pathname: "/quiz",
                 params: {
                     category,
-<<<<<<< HEAD
                     difficulty: "intermediate"
                 }
             },
@@ -39,15 +38,12 @@ export default function DifficultyScreen() {
                 pathname: "/quiz",
                 params: {
                     category,
-=======
->>>>>>> parent of 77c4378 (menambahkan kesulitan baru)
                     difficulty: "medium"
                 }
             },
             imageUrl : require("@/assets/difficulties/level-3.jpeg")
         },
         {
-<<<<<<< HEAD
             title: "Sulit",
             description: "hese any",
             url: {
@@ -61,9 +57,6 @@ export default function DifficultyScreen() {
         },
         {
             title: "Sangat Sulit",
-=======
-            title: "Hard",
->>>>>>> parent of 77c4378 (menambahkan kesulitan baru)
             description: "Level Impossible",
             url: {
                 pathname: "/quiz",

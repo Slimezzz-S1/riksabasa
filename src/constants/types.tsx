@@ -1,14 +1,10 @@
-<<<<<<< HEAD
 import { ImageSource } from "react-native"
-=======
-export type Category = "bahasa-indonesia" | "bahasa-sunda" | "sastra-sunda"
-export type Difficulty = "easy" | "medium" | "hard"
->>>>>>> parent of 77c4378 (menambahkan kesulitan baru)
+export const categories = ["bahasa-indonesia", "bahasa-sunda", "sastra-indonesia"] as const
+export const difficulties = ["easy", "intermediate", "medium", "hard", "expert"] as const
 
-export type Category = "bahasa-indonesia" | "bahasa-sunda" | "sastra-indonesia"
-export type Difficulty = "easy" | "intermediate" | "medium" | "hard" | "expert"
+export type Category = typeof categories[number]
+export type Difficulty = typeof difficulties[number]
 export type ContentType = "text" | "image"
-export type Content = Text | Image
 export type QuestionsData = {
 	[C in Category]: {
 		[D in Difficulty]: Quiz
@@ -24,6 +20,8 @@ export interface Text {
 	type : "text"
 	text : string
 }
+
+export type Content = Text | Image
 
 export interface Image {
 	type : "image"

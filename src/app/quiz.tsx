@@ -1,8 +1,8 @@
 import { ThemedText } from "@/components/themed-text"
 import { ThemedView } from "@/components/themed-view"
-import { questionData } from "@/constants/data"
+import { questionsData } from "@/constants/data"
 import { Colors } from "@/constants/theme"
-import type { Category, Difficulty } from "@/constants/types"
+import type { Category, Difficulty, Question } from "@/constants/types"
 import { Stack, useLocalSearchParams, useRouter } from "expo-router"
 import { useEffect, useState } from "react"
 import { Pressable, ScrollView, StyleSheet, View, Text } from "react-native"
@@ -14,7 +14,7 @@ export default function QuizScreen() {
 		difficulty: Difficulty
 	}>()
 
-	const questions = questionData[category]?.[difficulty] ?? []
+	const questions : Question[] = questionsData[category]?.[difficulty]["questions"] ?? []
 
 	const [index, setIndex] = useState(0)
 	const [picked, setPicked] = useState<(number | null)[]>(() => questions.map(() => null))
