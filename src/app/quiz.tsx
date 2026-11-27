@@ -3,33 +3,51 @@ import { ThemedView } from "@/components/themed-view"
 import { questionsData } from "@/constants/data"
 import { Colors } from "@/constants/theme"
 import type { Category, Difficulty, Question, Quiz } from "@/constants/types"
-import shuffle, { shuffleAnswers } from "@/lib/shuffle"
+import { shuffleAnswers, shuffle } from "@/lib/shuffle"
 import { Stack, useLocalSearchParams, useRouter } from "expo-router"
-import { useEffect, useMemo, useState } from "react"
+import { useEffect, useState } from "react"
 import { Pressable, ScrollView, StyleSheet, View, Text } from "react-native"
 
 export default function QuizScreen() {
-	const router = useRouter()
 	const { category, difficulty } = useLocalSearchParams<{
 		category: Category
 		difficulty: Difficulty
 	}>()
+	
+	const [questions] = useState<Question[]>(
+		shuffle(
+			(questionsData[category]?.[difficulty]?.questions ?? [])
+			.map(shuffleAnswers)
+		)
+		.slice(0, 5)
+	)
 
-	const [questions] = useState<Question[]>(() => (questionsData[category]?.[difficulty]?.questions ?? []).map(shuffleAnswers).filter((_, index) => index < 5))
-
-	const [index, setIndex] = useState(0)
-	const [picked, setPicked] = useState<(number | null)[]>(() => questions.map(() => null))
-	const [finished, setFinished] = useState(false)
-
+	
 	if (questions.length === 0) {
+		// throw new 
 		return (
 			<ThemedView style={styles.center}>
 				<ThemedText>
-					No questions found for this quiz.
+					Error : Tidak ada Pertanyaan
 				</ThemedText>
 			</ThemedView>
 		)
 	}
+
+	return (
+		<QuizContent questions={questions} />
+	)
+}
+
+interface QuizContentProps {
+	questions : Question[]
+}
+
+function QuizContent({ questions } : QuizContentProps) {
+	const router = useRouter()
+	const [index, setIndex] = useState(0)
+	const [picked, setPicked] = useState<(number | null)[]>(() => questions.map(() => null))
+	const [finished, setFinished] = useState(false)
 
 	const current = questions[index]
 

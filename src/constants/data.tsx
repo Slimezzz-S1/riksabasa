@@ -158,7 +158,7 @@ export const questionsData : QuestionsData = {
                 {
                     question: "Kalimat yang menggunakan kata serapan dengan benar adalah",
                     answers: ["Kami mengakses informasi melalui internet", "Kami mengaksess informasi melalui internet", "Kami mengaksees informasi melalui internet", " Kami mengakkses informasi melalui internet"],
-                    correctAnswer: 2,
+                    correctAnswer: 0,
                 },
                 {
                     question: "Kata yang memiliki makna sama dengan cenderung adalah",
@@ -168,7 +168,7 @@ export const questionsData : QuestionsData = {
                 {
                     question: "Kalimat yang menggunakan kata keterangan waktu adalah",
                     answers: ["Adik membeli sepatu baru", "Mereka berlatih kemarin sore", "Buku itu sangat tebal", " Rumahnya berwarna putih."],
-                    correctAnswer: 2,
+                    correctAnswer: 1,
                 },
             ],
         },

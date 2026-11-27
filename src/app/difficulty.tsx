@@ -72,7 +72,7 @@ export default function DifficultyScreen() {
     return (
         <ThemedView style={styles.root}>
             <ScrollView contentContainerStyle={styles.scrollContainer}>
-                <HeroCarouselItem text={`${category}\ntest`} />
+                <HeroCarouselItem text={`${category}\nPilih level yang kamu ingin pelajari`} />
 
                 <Select text="Pilih kesulitan" options={options} />
             </ScrollView>
